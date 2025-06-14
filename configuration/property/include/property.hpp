@@ -6,7 +6,7 @@
 
 class token_ptr;
 
-namespace conf {
+namespace config {
 
 class Value {
 private:    
