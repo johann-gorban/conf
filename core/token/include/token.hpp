@@ -11,8 +11,8 @@ typedef enum {
 
 class Token {
 private:
-    const std::string data_;
-    const TokenType type_;
+    const std::string data;
+    const TokenType type;
 public:
     Token(TokenType type, const std::string &data = "");
     // May be inline?

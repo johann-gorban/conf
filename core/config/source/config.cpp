@@ -2,10 +2,10 @@
 
 #include <stdexcept>
 
-config::Config::Config(const Config::Processor *processor) {
+config::Config::Config(const config::processing::Processor *processor) {
     if (!processor) {
         // Set to default processor
-        processor = new Config::Processor;
+        processor = new config::processing::Processor;
     }
 
     this->processor = processor;

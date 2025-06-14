@@ -1,18 +1,16 @@
 #pragma once
 
+#include "token.hpp"
+
 #include <string>
-
-#include "processing/utils/token.hpp"
-
-class token_ptr;
 
 namespace config {
 
-class Value {
+class Property {
 private:    
     const std::string data_;
 public:
-    explicit Value(const token_ptr token);
+    explicit Property(const token_ptr token);
 public:
     int to_int() const;
     
@@ -23,28 +21,28 @@ public:
     std::string to_string() const;
 };
 
-class IntegerValue : public Value {
+class IntegerValue : public Property {
 public:
     explicit IntegerValue(const token_ptr token);
 public:
     int to_int() const;
 };
 
-class FloatValue : public Value {
+class FloatValue : public Property {
 public:
     explicit FloatValue(const token_ptr token);
 public:
     float to_float() const;
 };
 
-class BoolValue : public Value {
+class BoolValue : public Property {
 public:
     explicit BoolValue(const token_ptr token);
 public:
     bool to_bool() const;
 };
 
-class StringValue : public Value {
+class StringValue : public Property {
 public:
     explicit StringValue(const token_ptr token);
 public:
