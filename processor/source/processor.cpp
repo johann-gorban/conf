@@ -1,13 +1,11 @@
-#pragma once
-
 #include "processor.hpp"
 
 #include <stdexcept>
 
-config::processing::Processor::Processor(const tokenization::lexer *l, const parsing::parser *p) {
+config::processing::Processor::Processor(const tokenization::Lexer *l, const parsing::Parser *p) {
     if (!p) {
         // set default parser
-        p = new config::processing::parsing:::Parser;
+        p = new config::processing::parsing::Parser;
     }
 
     if (!l) {
@@ -19,7 +17,7 @@ config::processing::Processor::Processor(const tokenization::lexer *l, const par
     this->lexer = l;
 }
 
-config::property_map config::processing::Processor::process(const std::ifstream &config_file) const {
+config::property_map config::processing::Processor::process(std::ifstream &config_file) const {
     // Read the whole file and parse it char by char by lexer
     // Then parse it by parsers
     // Finally organize it to property map
@@ -44,7 +42,9 @@ config::property_map config::processing::Processor::organize(const std::vector<c
     }
 
     for (std::size_t i = 0; i < tokens.size(); i += 2) {
-        params[tokens[i]->to_string()] = new config::Property(tokens[i + 2]);
+        config::property_ptr = std::make_shared
+        // After the abstract fabric implemented rewrite this segment
+        // params[tokens[i]->to_string()] = new config::Property(tokens[i + 2]);
         // Add checking
     }
 
