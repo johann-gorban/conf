@@ -3,6 +3,7 @@
 #include "token.hpp"
 
 #include <string>
+#include <unordered_map>
 
 namespace config {
 
@@ -50,3 +51,9 @@ public:
 };
 
 };
+
+namespace config {
+
+using property_map = std::unordered_map<std::string, config::Property>;
+
+}

@@ -11,7 +11,7 @@ namespace config {
 
 class Config {
 private:
-    std::unordered_map<std::string, config::Property> params;
+    config::property_map params;
     const config::processing::Processor *processor;
 public:
     Config(const config::processing::Processor *processor = nullptr);
