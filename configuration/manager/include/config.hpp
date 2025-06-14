@@ -1,12 +1,12 @@
 #pragma once
 
-#include "value/config_value.hpp"
+#include "property.hpp"
 
 #include <unordered_map>
 #include <fstream>
 #include <string>
 
-namespace Config {
+namespace config {
 
 class Config {
 private:
