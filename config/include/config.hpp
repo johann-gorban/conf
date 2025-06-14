@@ -16,11 +16,11 @@ private:
 public:
     Config(const config::processing::Processor *processor = nullptr);
 public:
-    void init(const std::ifstream &config_file);
+    void init(std::ifstream &config_file);
 
     void init(const std::string &config_name);
 
-    config::Property get(const std::string &param_name) const;
+    property_ptr get(const std::string &param_name) const;
 };
 
 };

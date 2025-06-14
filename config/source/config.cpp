@@ -11,7 +11,7 @@ config::Config::Config(const config::processing::Processor *processor) {
     this->processor = processor;
 }
 
-void config::Config::init(const std::ifstream &config_file) {
+void config::Config::init(std::ifstream &config_file) {
     if (config_file.good()) {
         this->processor->process(config_file);
     }
@@ -30,7 +30,7 @@ void config::Config::init(const std::string &config_name) {
     }
 }
 
-config::Value config::Config::get(const std::string &param_name) const {
+config::property_ptr config::Config::get(const std::string &param_name) const {
     if (this->params.count(param_name) == 0) {
         throw std::runtime_error("There is no parameter with such name");
     }
