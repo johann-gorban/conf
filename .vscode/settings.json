@@ -1,0 +1,7 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "fstream": "cpp",
+        "unordered_map": "cpp"
+    }
+}

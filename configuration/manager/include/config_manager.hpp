@@ -1,15 +1,19 @@
 #pragma once
 
+#include "value/config_value.hpp"
+
 #include <unordered_map>
 #include <string>
 
-#include "value/config_value.hpp"
+namespace Config {
 
-class ConfigManager {
+class Config {
 private:
     std::unordered_map<std::string, ConfigValue> params_;
 public:
     ConfigManager(file, const ConfigProcessor *processor = nullptr);
 
-    const ConfigValue getenv(const std::string &param_name) const;
+    const ConfigValue get(const std::string &param_name) const;
+}
+
 }
