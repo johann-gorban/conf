@@ -3,6 +3,8 @@
 #include <string>
 #include <memory>
 
+namespace config {
+
 typedef enum {
     Key,
     Value,
@@ -20,3 +22,5 @@ public:
 };
 
 using token_ptr = std::shared_ptr<Token>;
+
+}
