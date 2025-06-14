@@ -17,6 +17,9 @@ private:
     const TokenType type;
 public:
     Token(TokenType type, const std::string &data = "");
+
+    TokenType get_type() const;
+
     // May be inline?
     const std::string to_string() const;
 };
