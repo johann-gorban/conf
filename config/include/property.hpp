@@ -53,8 +53,12 @@ public:
     std::string to_string() const;
 };
 
-using property_ptr = std::shared_ptr<Property>;
+}
 
-using property_map = std::unordered_map<std::string, property_ptr>;
+namespace config {
+
+    using property_ptr = std::shared_ptr<Property>;
+
+    using property_map = std::unordered_map<std::string, property_ptr>;
 
 }
