@@ -7,7 +7,7 @@ namespace config {
 
 typedef enum {
     Key,
-    Value,
+    Property,
     Operation
 } TokenType;
 
