@@ -4,6 +4,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <memory>
 
 namespace config {
 
@@ -12,14 +13,16 @@ private:
     const std::string data_;
 public:
     explicit Property(const token_ptr token);
-public:
-    int to_int() const;
-    
-    bool to_bool() const;
-    
-    float to_float() const;
 
-    std::string to_string() const;
+    virtual ~Property() = default;
+public:
+    virtual int to_int() const = 0;
+    
+    virtual bool to_bool() const = 0;
+    
+    virtual float to_float() const = 0;
+
+    virtual std::string to_string() const = 0;
 };
 
 class IntegerValue : public Property {
@@ -50,10 +53,8 @@ public:
     std::string to_string() const;
 };
 
-};
+using property_ptr = std::shared_ptr<Property>;
 
-namespace config {
-
-using property_map = std::unordered_map<std::string, config::Property>;
+using property_map = std::unordered_map<std::string, property_ptr>;
 
 }
