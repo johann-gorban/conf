@@ -17,9 +17,9 @@ private:
 public:
     Processor(const tokenization::lexer *l = nullptr, const parsing::parser *p = nullptr);
 public:
-    std::unordered_map<std::string, config::Property> process(const std::ifstream &config_file) const;
+    config::property_map process(const std::ifstream &config_file) const;
 private:
-    std::unordered_map<std::string, config::Property> organize(const std::vector<token_ptr> &tokens) const;
+    config::property_map organize(const std::vector<token_ptr> &tokens) const;
 };
 
 }
