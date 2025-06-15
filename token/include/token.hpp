@@ -28,22 +28,22 @@ public:
 
 class IntegerToken : public Token {
 public:
-    IntegerToken(TokenType type, const std::string &data = "");
+    IntegerToken(const int data = 0);
 };
 
 class FloatToken : public Token {
 public:
-    FloatToken(TokenType type, const std::string &data = "");
+    FloatToken(const float data = 0);
 };
 
 class BoolToken : public Token {
 public:
-    BoolToken(TokenType type, const std::string &data = "");
+    BoolToken(const bool data = false);
 };
 
 class StringToken : public Token {
 public:
-    StringToken(TokenType type, const std::string &data = "");
+    StringToken(const std::string &data = "");
 };
 
 }

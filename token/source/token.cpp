@@ -13,14 +13,14 @@ config::TokenType config::Token::get_type() const {
     return this->type;
 }
 
-config::IntegerToken::IntegerToken(config::TokenType type, const std::string &data) 
-    : Token(type, data) {}
+config::IntegerToken::IntegerToken(const int data) 
+    : Token(config::TokenType::Parameter, std::to_string(data)) {}
 
 config::FloatToken::FloatToken(config::TokenType type, const std::string &data) 
-    : Token(type, data) {}
+    : Token(config::TokenType::Parameter, std::to_string(data)) {}
 
 config::BoolToken::BoolToken(config::TokenType type, const std::string &data) 
-    : Token(type, data) {}
+    : Token(config::TokenType::Parameter, std::to_string(data)) {}
 
 config::StringToken::StringToken(config::TokenType type, const std::string &data) 
-    : Token(type, data) {}
+    : Token(config::TokenType::Parameter, std::to_string(data)) {}
