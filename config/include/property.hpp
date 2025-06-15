@@ -1,7 +1,5 @@
 #pragma once
 
-#include "token.hpp"
-
 #include <string>
 #include <unordered_map>
 #include <memory>
@@ -10,9 +8,11 @@ namespace config {
 
 class Property {
 private:    
-    const std::string data_;
+    const std::string data;
+protected:
+    const std::string get_data() const;
 public:
-    explicit Property(const token_ptr token);
+    explicit Property(const std::string &data = "");
 
     virtual ~Property() = default;
 public:
@@ -25,32 +25,32 @@ public:
     virtual std::string to_string() const = 0;
 };
 
-class IntegerValue : public Property {
+class IntegerProperty : protected Property {
 public:
-    explicit IntegerValue(const token_ptr token);
+    explicit IntegerProperty(const std::string &data = "");
 public:
-    int to_int() const;
+    int to_int() const override;
 };
 
-class FloatValue : public Property {
+class FloatProperty : protected Property {
 public:
-    explicit FloatValue(const token_ptr token);
+    explicit FloatProperty(const std::string &data = "");
 public:
-    float to_float() const;
+    float to_float() const override;
 };
 
-class BoolValue : public Property {
+class BoolProperty : protected Property {
 public:
-    explicit BoolValue(const token_ptr token);
+    explicit BoolProperty(const std::string &data = "");
 public:
-    bool to_bool() const;
+    bool to_bool() const override;
 };
 
-class StringValue : public Property {
+class StringProperty : protected Property {
 public:
-    explicit StringValue(const token_ptr token);
+    explicit StringProperty(const std::string &data = "");
 public:
-    std::string to_string() const;
+    std::string to_string() const override;
 };
 
 }
