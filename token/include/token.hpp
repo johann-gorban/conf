@@ -24,6 +24,8 @@ public:
     const std::string to_string() const;
 };
 
-using token_ptr = std::shared_ptr<Token>;
+namespace config {
+
+    using token_ptr = std::shared_ptr<Token>;
 
 }
