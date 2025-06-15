@@ -28,7 +28,7 @@ float FloatProperty::to_float() const {
 BoolProperty::BoolProperty(const std::string &data) 
     : Property(data) {}
 
-float BoolProperty::to_bool() const {
+bool BoolProperty::to_bool() const {
     const std::string &data = this->get_data();
     return (data == "true") ? true : false;
 }
