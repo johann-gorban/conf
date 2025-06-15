@@ -1,9 +1,27 @@
 #include "property.hpp"
 
+#include <stdexcept>
+
 namespace config {
 
 Property::Property(const std::string &data) 
     : data(data) {}
+
+int Property::to_int() const {
+    throw std::runtime_error("Cannot convert to integer");
+}
+
+bool Property::to_bool() const {
+    throw std::runtime_error("Cannot convert to bool");
+}
+
+float Property::to_float() const {
+    throw std::runtime_error("Cannot convert to float");
+}
+
+std::string Property::to_string() const {
+    throw std::runtime_error("Cannot convert to string");
+}
 
 const std::string Property::get_data() const {
     return this->data;
