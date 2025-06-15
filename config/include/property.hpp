@@ -9,44 +9,44 @@ namespace config {
 class Property {
 private:    
     const std::string data;
-protected:
-    const std::string get_data() const;
 public:
     explicit Property(const std::string &data = "");
 
     virtual ~Property() = default;
 public:
-    virtual int to_int() const = 0;
-    
-    virtual bool to_bool() const = 0;
-    
-    virtual float to_float() const = 0;
+    const std::string get_data() const;
 
-    virtual std::string to_string() const = 0;
+    virtual int to_int() const;
+    
+    virtual bool to_bool() const;
+    
+    virtual float to_float() const;
+
+    virtual std::string to_string() const;
 };
 
-class IntegerProperty : protected Property {
+class IntegerProperty : public Property {
 public:
     explicit IntegerProperty(const std::string &data = "");
 public:
     int to_int() const override;
 };
 
-class FloatProperty : protected Property {
+class FloatProperty : public Property {
 public:
     explicit FloatProperty(const std::string &data = "");
 public:
     float to_float() const override;
 };
 
-class BoolProperty : protected Property {
+class BoolProperty : public Property {
 public:
     explicit BoolProperty(const std::string &data = "");
 public:
     bool to_bool() const override;
 };
 
-class StringProperty : protected Property {
+class StringProperty : public Property {
 public:
     explicit StringProperty(const std::string &data = "");
 public:
