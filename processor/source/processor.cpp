@@ -47,13 +47,13 @@ property_map processing::Processor::organize(const std::vector<token_ptr> &token
     PropertyFactory factory;
 
     for (std::size_t i = 0; i < tokens.size(); i += 2) {
-        token_ptr property_token = tokens[i + 2];
-        token_ptr op_token = tokens[i + 1];
-        token_ptr key_token = tokens[i];
+        token_ptr property_token    = tokens[i + 2];
+        token_ptr op_token          = tokens[i + 1];
+        token_ptr key_token         = tokens[i];
 
-        if (op_token->get_type() != TokenType::Operation ||
-            property_token->get_type() != TokenType::Parameter ||
-            key_token->get_type() != TokenType::Key    
+        if (op_token->get_type()        != TokenType::Operation ||
+            property_token->get_type()  != TokenType::Parameter ||
+            key_token->get_type()       != TokenType::Key
         ) {
             throw std::runtime_error("Syntax error while organizing catched");
         }
