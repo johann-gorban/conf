@@ -1,27 +1,30 @@
 #include "processor.hpp"
+#include "property_factory.hpp"
 
 #include <stdexcept>
 
-config::processing::Processor::Processor(const tokenization::Lexer *l, const parsing::Parser *p) {
+namespace config {
+
+processing::Processor::Processor(const tokenization::Lexer *l, const parsing::Parser *p) {
     if (!p) {
         // set default parser
-        p = new config::processing::parsing::Parser;
+        p = new processing::parsing::Parser;
     }
 
     if (!l) {
         // set default tokenizer (lexer)
-        l = new config::processing::tokenization::Lexer;
+        l = new processing::tokenization::Lexer;
     }
     
     this->parser = p;
     this->lexer = l;
 }
 
-config::property_map config::processing::Processor::process(std::ifstream &config_file) const {
+property_map processing::Processor::process(std::ifstream &config_file) const {
     // Read the whole file and parse it char by char by lexer
     // Then parse it by parsers
     // Finally organize it to property map
-    std::vector<config::token_ptr> tokens;
+    std::vector<token_ptr> tokens;
     
     std::string line;
     while (config_file >> line) {
@@ -34,19 +37,31 @@ config::property_map config::processing::Processor::process(std::ifstream &confi
     return this->organize(tokens);
 }
 
-config::property_map config::processing::Processor::organize(const std::vector<config::token_ptr> &tokens) const {
-    config::property_map params;
+property_map processing::Processor::organize(const std::vector<token_ptr> &tokens) const {
+    property_map params;
 
     if (tokens.size() % 3) {
         throw std::runtime_error("Something went wront while organizing the config data");
     }
 
+    PropertyFactory factory;
+
     for (std::size_t i = 0; i < tokens.size(); i += 2) {
-        config::property_ptr = std::make_shared
-        // After the abstract fabric implemented rewrite this segment
-        // params[tokens[i]->to_string()] = new config::Property(tokens[i + 2]);
-        // Add checking
+        token_ptr property_token = tokens[i + 2];
+        token_ptr op_token = tokens[i + 1];
+        token_ptr key_token = tokens[i];
+
+        if (op_token->get_type() != TokenType::Operation ||
+            property_token->get_type() != TokenType::Parameter ||
+            key_token->get_type() != TokenType::Key    
+        ) {
+            throw std::runtime_error("Syntax error while organizing catched");
+        }
+
+        params[tokens[i]->to_string()] = factory.create(property_token);
     }
 
     return params;
+}
+
 }
