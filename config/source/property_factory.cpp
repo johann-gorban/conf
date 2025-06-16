@@ -42,4 +42,19 @@ property_ptr PropertyFactory::create(const token_ptr &token) {
     return it->second(data);
 }
 
+property_ptr PropertyFactory::create(const std::vector<token_ptr> &token_array) {
+    std::vector<property_ptr> properties;
+
+    for (auto &token : token_array) {
+        property_ptr property = this->create(token);
+        properties.push_back(property);
+    }   
+    
+    // Here might be an optimization
+    // Add move constructor to ArrayProperty
+    // And call it here:
+    // return std::make_shared<ArrayProperty>(std::move(properties));
+    return std::make_shared<ArrayProperty>(properties);
+}
+
 }

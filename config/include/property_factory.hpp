@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <typeindex>
 #include <functional>
+#include <vector>
 
 namespace config {
 
@@ -17,6 +18,8 @@ public:
     PropertyFactory();
 
     property_ptr create(const token_ptr &token);
+
+    property_ptr create(const std::vector<token_ptr> &token_array);
 };
 
 }
