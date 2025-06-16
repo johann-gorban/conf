@@ -23,6 +23,10 @@ std::string Property::to_string() const {
     throw std::runtime_error("Cannot convert to string");
 }
 
+std::vector<property_ptr> Property::to_array() const {
+    throw std::runtime_error("Cannot convert to array");
+}
+
 const std::string Property::get_data() const {
     return this->data;
 }
@@ -57,6 +61,26 @@ StringProperty::StringProperty(const std::string &data)
 std::string StringProperty::to_string() const {
     // May complain about const qualifier
     return this->get_data();
+}
+
+ArrayProperty::ArrayProperty(const std::vector<property_ptr> &properties) {
+    this->childs = properties;
+}
+
+std::vector<property_ptr> ArrayProperty::to_array() const {
+    std::vector<property_ptr> properties;
+
+    for (auto &child : this->childs) {
+        if (auto child_array = dynamic_cast<const ArrayProperty *>(child.get())) {
+            auto subarray = child_array->to_array();
+            properties.insert(properties.end(), subarray.begin(), subarray.end());
+        }
+        else {
+            properties.push_back(child);
+        }
+    }
+
+    return properties;
 }
 
 }
