@@ -7,6 +7,10 @@ namespace config {
 Property::Property(const std::string &data) 
     : data(data) {}
 
+void Property::add(const property_ptr &property) {
+    throw std::runtime_error("Cannot add property to not-array");
+}
+
 int Property::to_int() const {
     throw std::runtime_error("Cannot convert to integer");
 }
@@ -81,6 +85,10 @@ std::vector<property_ptr> ArrayProperty::to_array() const {
     }
 
     return properties;
+}
+
+void ArrayProperty::add(const property_ptr &property) {
+    this->childs.push_back(property);
 }
 
 }

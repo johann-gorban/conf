@@ -16,6 +16,8 @@ public:
 public:
     const std::string get_data() const;
 
+    virtual void add(const property_ptr &property);
+
     virtual int to_int() const;
     
     virtual bool to_bool() const;
@@ -66,7 +68,9 @@ private:
 public:
     explicit ArrayProperty(const std::vector<property_ptr> &properties);
 public:
-    std::vector<property_ptr> to_array() const;
+    std::vector<property_ptr> to_array() const override;
+
+    void add(const property_ptr &property) override;
 }
 
 }
