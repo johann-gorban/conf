@@ -57,11 +57,6 @@ public:
     std::string to_string() const override;
 };
 
-// Implement method
-// void push(property_ptr &property) 
-// Array will support array extending
-// Such as [1, 1, 2, [2, 3, 4], 5, 6]
-// Now only first three may be added
 class ArrayProperty : public Property {
 private:
     std::vector<property_ptr> childs;
