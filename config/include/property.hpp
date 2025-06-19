@@ -3,6 +3,17 @@
 #include <string>
 #include <unordered_map>
 #include <memory>
+#include <vector>
+
+namespace config {
+
+    class Property;
+
+    using property_ptr = std::shared_ptr<Property>;
+
+    using property_map = std::unordered_map<std::string, property_ptr>;
+
+}
 
 namespace config {
 
@@ -66,14 +77,7 @@ public:
     std::vector<property_ptr> to_array() const override;
 
     void add(const property_ptr &property) override;
-}
+};
 
 }
 
-namespace config {
-
-    using property_ptr = std::shared_ptr<Property>;
-
-    using property_map = std::unordered_map<std::string, property_ptr>;
-
-}
