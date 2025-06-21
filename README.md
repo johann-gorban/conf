@@ -34,19 +34,66 @@ bool is_default = conf.get("DEFAULT").to_bool();
 
 ## Syntax
 
-Configuration files follow these formal grammar rules:
-
 ```ebnf
-<config>     = { <assignment> }
-<assignment> = <lvalue> "=" <rvalue> <assignment_end>
-<lvalue>     = ? /[a-zA-Z][a-zA-Z0-9]*/ ?
-<rvalue>     = <number> | <string> | <array>
-<number>     = <integer> | <float>
-<integer>    = ? /-?[0-9]+/ ?
-<float>      = ? /-?([0-9]+\.[0-9]*|\.[0-9]+)/ ?
-<string>     = ? /"[^"]*"/ ?
-<array>      = "[" [ <rvalue> { "," <rvalue> } ] "]"
-<assignment_end> = ? /(\s*\n\s*)+/ ?
+Configuration files follow these formal grammar rules:
+<config>     ::= <assignment_list>
+<assignment_list> ::= 
+                  | <assignment> <assignment_list>
+
+<assignment> ::= <lvalue> "=" <rvalue> <assignment_end>
+
+<lvalue>     ::= <identifier>
+<identifier> ::= <letter> 
+               | <letter> <identifier_rest>
+<identifier_rest> ::= 
+                  | <alphanumeric> <identifier_rest>
+<alphanumeric> ::= <letter> | <digit>
+
+<rvalue>     ::= <number> 
+               | <string> 
+               | <array>
+
+<number>     ::= <integer> 
+               | <float>
+<integer>    ::= <digit> 
+               | "-" <digit> 
+               | <digit> <integer> 
+               | "-" <digit> <integer>
+<float>      ::= <integer> "." 
+               | <integer> "." <digit_sequence>
+               | "." <digit_sequence>
+               | "-" <integer> "."
+               | "-" <integer> "." <digit_sequence>
+               | "-" "." <digit_sequence>
+<digit_sequence> ::= <digit> 
+                   | <digit> <digit_sequence>
+
+<string>     ::= "\"" <string_content> "\""
+<string_content> ::= 
+                  | <non_quote> <string_content>
+<non_quote>  ::= любой символ кроме "\""
+
+<array>      ::= "[" <array_items> "]" 
+               | "[" "]"
+<array_items> ::= <rvalue> 
+                | <rvalue> "," <array_items>
+
+<assignment_end> ::= <whitespace> <assignment_end>
+                   | <newline> <whitespace>
+                   | <newline>
+                   | <whitespace> <newline> <assignment_end>
+
+<letter>     ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" 
+               | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" 
+               | "u" | "v" | "w" | "x" | "y" | "z" 
+               | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" 
+               | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" 
+               | "U" | "V" | "W" | "X" | "Y" | "Z"
+
+<digit>      ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+
+<whitespace> ::= " " | "\t"
+<newline>    ::= "\n" | "\r" | "\r\n"
 ```
 
 ### Key Specifications
