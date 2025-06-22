@@ -15,7 +15,7 @@ namespace config {
                 state_ptr state;
                 std::string buffer;
             public:
-                Context();
+                explicit Context(const state_ptr &start_state);
 
                 std::vector<token_ptr> get_tokens() const noexcept;
 
@@ -29,7 +29,7 @@ namespace config {
 
                 void set_state(state_ptr &&state);
 
-                state_ptr get_state() const noexcept;
+                const state_ptr &get_state() const noexcept;
             };
         }
     }
