@@ -30,35 +30,35 @@ namespace config {
             class IdentifierState : public State {
             public:
                 void handle_char(Context &ctx, char c) override;
-            
-                void emit_token(Context &ctx) override;
-            };
 
-            class NumberState : public State {
-            public:
-                void handle_char(Context &ctx, char c) override;
-            
-                void emit_token(Context &ctx) override;
-            };
-
-            class ArrayState : public State {
-            public:
-                void handle_char(Context &ctx, char c) override;
-            
-                void emit_token(Context &ctx) override;
-            };
-
-            class SeparatorState : public State {
-            public:
-                void handle_char(Context &ctx, char c) override;
-            
                 void emit_token(Context &ctx) override;
             };
 
             class OperatorState : public State {
             public:
                 void handle_char(Context &ctx, char c) override;
-            
+
+                void emit_token(Context &ctx) override;
+            };
+
+            class ArrayState : public State {
+            public:
+                void handle_char(Context &ctx, char c) override;
+
+                void emit_token(Context &ctx) override;
+            };
+
+            class StringState : public State {
+            public:
+                void handle_char(Context &ctx, char c) override;
+
+                void emit_token(Context &ctx) override;
+            };
+
+            class NumberState : public State {
+            public:
+                void handle_char(Context &ctx, char c) override;
+                
                 void emit_token(Context &ctx) override;
             };
 
