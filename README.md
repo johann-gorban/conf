@@ -35,7 +35,6 @@ bool is_default = conf.get("DEFAULT").to_bool();
 ## Syntax
 
 ```ebnf
-Configuration files follow these formal grammar rules:
 <config>     ::= <assignment_list>
 <assignment_list> ::= 
                   | <assignment> <assignment_list>
@@ -69,9 +68,8 @@ Configuration files follow these formal grammar rules:
                    | <digit> <digit_sequence>
 
 <string>     ::= "\"" <string_content> "\""
-<string_content> ::= 
-                  | <non_quote> <string_content>
-<non_quote>  ::= любой символ кроме "\""
+<string_content> ::= any char 
+                  | any char <string_content>
 
 <array>      ::= "[" <array_items> "]" 
                | "[" "]"
@@ -93,7 +91,7 @@ Configuration files follow these formal grammar rules:
 <digit>      ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
 
 <whitespace> ::= " " | "\t"
-<newline>    ::= "\n" | "\r" | "\r\n"
+<newline>    ::= "\n"
 ```
 
 ### Key Specifications
@@ -137,7 +135,6 @@ transform = [
 ```ini
 user name = "Alex"  X Space in identifier
 5stars = 10         X Digit-first identifier
-path="C:\files"     X Backslash not allowed
 items=[1 2,3]       X Missing comma
 port=8080log=true   X Missing separator
 ```
