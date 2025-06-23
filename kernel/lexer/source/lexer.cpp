@@ -10,7 +10,7 @@ namespace config {
         namespace tokenization {
 
             std::vector<config::token_ptr> Lexer::tokenize(const std::string &s) const {
-                Context ctx(std::make_shared<StartState>);
+                Context ctx(std::make_shared<StartState>());
 
                 for (char c : s) {
                     const auto &state = ctx.get_state();
