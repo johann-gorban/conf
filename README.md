@@ -35,10 +35,6 @@ bool is_default = conf.get("DEFAULT").to_bool();
 ## Syntax
 
 ```ebnf
-<config>     ::= <assignment_list>
-<assignment_list> ::= 
-                  | <assignment> <assignment_list>
-
 <assignment> ::= <lvalue> "=" <rvalue> <assignment_end>
 
 <lvalue>     ::= <identifier>
