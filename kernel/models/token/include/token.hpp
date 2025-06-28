@@ -3,8 +3,6 @@
 #include <string>
 #include <memory>
 
-namespace config {
-
 typedef enum {
     Key,
     Parameter,
@@ -16,40 +14,34 @@ private:
     const std::string data;
     const TokenType type;
 public:
-    Token(TokenType type, const std::string &data = "");
+    explicit Token(TokenType type, const std::string &data);
 
     virtual ~Token() = default;
-public:
+
     TokenType get_type() const;
 
-    // May be inline?
+    // inline?
     const std::string to_string() const;
 };
 
 class IntegerToken : public Token {
 public:
-    IntegerToken(const std::string &data = "");
+    explicit IntegerToken(const std::string &data);
 };
 
 class FloatToken : public Token {
 public:
-    FloatToken(const std::string &data = "");
+    explicit FloatToken(const std::string &data);
 };
 
 class BoolToken : public Token {
 public:
-    BoolToken(const std::string &data = "");
+    explicit BoolToken(const std::string &data);
 };
 
 class StringToken : public Token {
 public:
-    StringToken(const std::string &data = "");
+    explicit StringToken(const std::string &data);
 };
 
-}
-
-namespace config {
-
-    using token_ptr = std::shared_ptr<Token>;
-
-}
+using token_ptr = std::shared_ptr<Token>;
