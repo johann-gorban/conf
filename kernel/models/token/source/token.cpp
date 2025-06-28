@@ -12,13 +12,13 @@ TokenType Token::get_type() const {
 }
 
 IntegerToken::IntegerToken(const std::string &data) 
-    : Token(TokenType::Parameter, data) {}
+    : Token("integer", data) {}
 
 FloatToken::FloatToken(const std::string &data) 
-    : Token(TokenType::Parameter, data) {}
+    : Token("float", data) {}
 
 BoolToken::BoolToken(const std::string &data) 
-    : Token(TokenType::Parameter, data) {}
+    : Token("bool", data) {}
 
 StringToken::StringToken(const std::string &data) 
-    : Token(TokenType::Parameter, data) {}
+    : Token("string", data) {}

@@ -3,25 +3,19 @@
 #include <string>
 #include <memory>
 
-typedef enum {
-    Key,
-    Parameter,
-    Operation
-} TokenType;
-
 class Token {
 private:
     const std::string data;
-    const TokenType type;
+    const std::string type;
 public:
-    explicit Token(TokenType type, const std::string &data);
+    Token(const std::string &type, const std::string &data);
 
     virtual ~Token() = default;
-
-    TokenType get_type() const;
-
+public:
     // inline?
-    const std::string to_string() const;
+    const std::string get_data() const;
+
+    const std::string get_type() const;
 };
 
 class IntegerToken : public Token {
