@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
-project(lexer-states)
+project(tokens)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 
 file(GLOB SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp
@@ -11,16 +11,12 @@ file(GLOB HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp
 )
 
-add_library(lexer-states STATIC
+add_library(tokens STATIC
     ${SOURCES}
     ${HEADERS}
 )
 
-target_link_libraries(lexer-states PRIVATE
-    models
-)
-
-target_include_directories(lexer-states
+target_include_directories(tokens
     PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )

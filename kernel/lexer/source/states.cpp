@@ -5,10 +5,10 @@ namespace config {
     namespace processing {
 
         namespace tokenization {
-            State::State(const std::string &identifier) : id(identifier) {};
+            State::State(const std::string &name) : debug_info(name) {};
 
-            std::string State::get_id() const noexcept {
-                return this->id;
+            std::string State::get_name() const noexcept {
+                return this->debug_info;
             }
 
             StartState::StartState() : State("START") {}

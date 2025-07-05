@@ -3,16 +3,24 @@ project(lexer)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_subdirectory(states)
-add_subdirectory(core)
+file(GLOB SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp
+)
 
-add_library(lexer INTERFACE)
+file(GLOB HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp
+)
 
-target_link_libraries(lexer INTERFACE
-    models
+add_library(lexer STATIC
+    ${SOURCES}
+    ${HEADERS}
+)
+
+target_link_libraries(lexer PRIVATE
+    tokens
 )
 
 target_include_directories(lexer
-    INTERFACE
-        ${CMAKE_CURRENT_SOURCE_DIR}/core/include
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
 )

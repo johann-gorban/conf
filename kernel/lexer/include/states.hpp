@@ -1,7 +1,7 @@
 #pragma once
 
-#include "context.hpp"
-#include "token.hpp"
+#include <memory>
+#include <string>
 
 namespace config {
 
@@ -12,7 +12,13 @@ namespace config {
             class Context;
 
             class State {
+            private:
+                const std::string debug_info;
             public:
+                explicit State(const std::string &name);
+
+                std::string get_name() const noexcept;
+
                 virtual void handle_char(Context &ctx, char c) = 0;
                 
                 virtual void emit_token(Context &ctx) = 0;
@@ -22,6 +28,8 @@ namespace config {
 
             class StartState : public State {
             public:
+                StartState();
+
                 void handle_char(Context &ctx, char c) override;
             
                 void emit_token(Context &ctx) override;
@@ -29,6 +37,8 @@ namespace config {
 
             class IdentifierState : public State {
             public:
+                IdentifierState();
+
                 void handle_char(Context &ctx, char c) override;
 
                 void emit_token(Context &ctx) override;
@@ -36,6 +46,8 @@ namespace config {
 
             class OperatorState : public State {
             public:
+                OperatorState();
+
                 void handle_char(Context &ctx, char c) override;
 
                 void emit_token(Context &ctx) override;
@@ -43,6 +55,8 @@ namespace config {
 
             class ArrayState : public State {
             public:
+                ArrayState();
+
                 void handle_char(Context &ctx, char c) override;
 
                 void emit_token(Context &ctx) override;
@@ -50,6 +64,8 @@ namespace config {
 
             class StringState : public State {
             public:
+                StringState();
+
                 void handle_char(Context &ctx, char c) override;
 
                 void emit_token(Context &ctx) override;
@@ -57,6 +73,8 @@ namespace config {
 
             class NumberState : public State {
             public:
+                NumberState();
+
                 void handle_char(Context &ctx, char c) override;
                 
                 void emit_token(Context &ctx) override;
@@ -64,6 +82,8 @@ namespace config {
 
             class EndState : public State {
             public:
+                EndState();
+
                 void handle_char(Context &ctx, char c) override;
             
                 void emit_token(Context &ctx) override;

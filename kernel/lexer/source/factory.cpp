@@ -7,6 +7,7 @@ namespace config {
     namespace processing {
 
         namespace tokenization {
+            
             StateFactory::StateFactory() {
                 this->table["START"]        = std::make_shared<StartState>();
                 this->table["IDENTIFIER"]   = std::make_shared<IdentifierState>();
