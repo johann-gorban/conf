@@ -9,11 +9,10 @@
 
 namespace config {
 
-    ConfigProcessor::ConfigProcessor(const std::string& filepath)
-        : input_path(filepath) {}
+    ConfigProcessor::ConfigProcessor(const std::string& filepath) : config_path(filepath) {}
 
     void ConfigProcessor::process() {
-        auto lines = Preprocessor::process(input_path);
+        auto lines = Preprocessor::process(config_path);
         // auto ast = Praser::process(lines);
         // properties = Lexer::process(ast);
         properties = {}; // Here is stub

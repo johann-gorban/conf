@@ -16,7 +16,7 @@ std::vector<std::string> Preprocessor::process(const std::string& filepath) {
         std::string no_comment = remove_comment(line);
         std::string no_space = remove_space(no_comment);
         if (!no_space.empty()) {
-            cleaned_lines.push_back(trimmed);
+            cleaned_lines.push_back(no_space);
         }
     }
 
@@ -56,13 +56,13 @@ std::vector<std::string> Preprocessor::join_block(const std::vector<std::string>
     for (const auto& line : lines) {
         current += line + " ";
         if (!line.empty() && line.back() == ';') {
-            result.push_back(trim(current));
+            result.push_back(remove_space(current));
             current.clear();
         }
     }
 
     if (!current.empty()) {
-        result.push_back(trim(current));
+        result.push_back(remove_space(current));
     }
 
     return result;
